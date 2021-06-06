@@ -1,0 +1,329 @@
+@charset "ISO-8859-1";
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Zen+Dots&display=swap')
+	;
+
+/* =======css for profile bar======== */
+.profilebar {
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: #111;
+	overflow-x: hidden;
+	transition: 0.5s;
+	padding-top: 60px;
+}
+
+.profilebar a {
+	padding: 8px 8px 8px 32px;
+	text-decoration: none;
+	font-size: 25px;
+	color: #818181;
+	display: block;
+	transition: 0.3s;
+}
+
+.profilebar a:hover {
+	color: #f1f1f1;
+}
+
+.profilebar .closebtn {
+	position: absolute;
+	top: 0;
+	right: 25px;
+	font-size: 36px;
+	margin-left: 50px;
+}
+
+.openbtn {
+	font-size: 20px;
+	cursor: pointer;
+	background-color: #111;
+	color: white;
+	padding: 10px 15px;
+	border: none;
+}
+
+.openbtn:hover {
+	background-color: #444;
+}
+
+#main {
+	transition: margin-left .5s;
+	padding: 16px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+	.profilebar {
+		padding-top: 15px;
+	}
+	.profilebar a {
+		font-size: 18px;
+	}
+}
+
+/* ======= end css for profile bar======== */
+.icon-box:hover .h3 {
+	color: #ffffff;
+}
+
+.modelBtn {
+	border: 2px solid #0b1f58;
+	border-radius: 50px;
+	color: #0b1f58;
+	background: transparent;
+	transition: all 0.3s ease-in-out;
+}
+
+.modelBtn:hover {
+	background: #152371;
+	border-color: #fff;
+	color: #fff;
+}
+
+.modelBtn:focus {
+	outline: none;
+}
+
+.notificationbellCount {
+	border-radius: 40%;
+	background: red;
+	font-size: 15px;
+	left: -31%;
+	top: -8px;
+	position: relative;
+}
+
+.bellIcon {
+	color: #4124ab;
+	font-size: 23px;
+}
+
+.bellIcon:hover {
+	color: #4f38a2;
+	transform: scale(1.1);
+	transition: 0.3s;
+}
+
+#notifybtn {
+	border: 2px solid #0b1f58;
+	border-radius: 50px;
+	color: #0b1f58;
+	background: transparent;
+	transition: all 0.3s ease-in-out;
+}
+
+#notifybtn:hover {
+	background: #152371;
+	border-color: #fff;
+	color: #fff;
+}
+
+#notifybtn:focus {
+	outline: none;
+}
+
+.completeBtn {
+	background: #4124ab;
+	border: 0;
+	border-radius: 50px;
+	padding: 10px 24px;
+	color: #fff;
+	transition: 0.4s;
+}
+
+.completeBtn:hover {
+	background: #e6573f;
+	border: none;
+}
+
+.completeBtn:focus {
+	background: #e6573f;
+	border: none;
+}
+
+.reqDataCard {
+	width: 100%;
+	padding: 40px 30px;
+	box-shadow: 0px 2px 15px rgb(0 0 0/ 15%);
+	border-radius: 10px;
+	background: #fff;
+}
+
+.reqCard {
+	padding: 40px 30px;
+	box-shadow: 0px 2px 15px rgb(0 0 0/ 15%);
+	border-radius: 10px;
+	background: #fff;
+	transition: all ease-in-out 0.3s;
+}
+
+.reqCard:hover {
+	background: #4124ab;
+	color: white;
+}
+
+.reqCard:hover p {
+	color: white;
+}
+
+.userNotifyCard {
+	/* 	padding: 0px 30px;
+
+	border-radius: 10px;
+	background: #fff;
+	transition: all ease-in-out 0.3s; */
+	position: relative;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	min-width: 0;
+	word-wrap: break-word;
+	background-color: #fff;
+	background-clip: border-box;
+	/*  border: 1px solid rgba(0,0,0,.125); */
+	border-radius: .25rem;
+	    border-bottom: 1px solid lightgrey;
+	padding: 0px 30px;
+}
+
+.userNotifyCard:hover {
+	background: #4124ab;
+	color: white;
+}
+
+.userNotifyCard:hover .card-body a {
+	color: white;
+}
+
+.notifyCard {
+	padding: 0px 30px;
+	border-radius: 10px;
+	background: #fff;
+	transition: all ease-in-out 0.3s;
+}
+
+.notifyCard:hover {
+	background: #4124ab;
+	color: white;
+}
+
+.notifyCard:hover .card-body a {
+	color: white;
+}
+
+.hrLine {
+	height: 2px;
+	margin: 31px 0 25px 0;
+	background: rgb(7 21 71/ 84%);
+}
+
+.nav-menu .notifyLink {
+	transition: 0.3s;
+	padding: 0;
+	display: block;
+	position: relative;
+}
+
+.name {
+	font-family: Zen Dots;
+	font-size: 27px
+}
+
+
+@media screen and (min-width: 601px) {
+	.detailsclmn {
+		font-size: 30px;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.detailsclmn {
+		font-size: 18px;
+	}
+}
+
+
+
+@media screen and (min-width: 601px) {
+	.detailsclmndata {
+		font-size: 21px;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.detailsclmndata {
+		font-size: 10px;
+	}
+}
+
+
+
+
+@media screen and (min-width: 601px) {
+	.workDetailsclmn {
+		font-size: 25px;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.workDetailsclmn {
+		font-size: 15px;
+	}
+}
+
+
+
+
+
+
+@media screen and (min-width: 601px) {
+	.workDetailsclmndata {
+		font-size: 16px;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.workDetailsclmndata {
+		font-size: 7px;
+	}
+}
+
+
+
+@media screen and (max-width: 768px) {
+	.workDetailsclmn {
+		font-size: 15px;
+	}
+}
+
+
+@media screen and (min-width: 601px) {
+	.workDetailsclmndata {
+		font-size: 14px;
+	}
+}
+
+
+
+@media screen and (min-width: 601px) {
+	.workDetailsclmndata {
+		font-size: 16px;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.workDetailsclmndata {
+		font-size: 7px;
+	}
+}
+
