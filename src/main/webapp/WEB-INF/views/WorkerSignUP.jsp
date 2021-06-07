@@ -134,14 +134,14 @@
 				<div class="col-md-6 ">
 					<div class="custom-file form-group">
 						<!-- <label for="exampleFormControlInput1">Worker Pic :</label> -->
-						<input type="file" name="profilePic" class="custom-file-input " id="customFile"> <label class="custom-file-label inpt" for="customFile">Choose
+						<input type="file" name="pic" class="custom-file-input " id="customFile"> <label class="custom-file-label inpt" for="customFile">Choose
 							Profile Pic</label>
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="custom-file form-group">
 						<!-- <label for="exampleFormControlInput1">Aadhar Card  Pic :</label> -->
-						<input type="file" name="aadharCardPic" class="custom-file-input " id="customFile"> <label class="custom-file-label inpt"
+						<input type="file" name="aadhar" class="custom-file-input " id="customFile"> <label class="custom-file-label inpt"
 							for="customFile">Choose Aadhar Card Pic</label>
 					</div>
 				</div>

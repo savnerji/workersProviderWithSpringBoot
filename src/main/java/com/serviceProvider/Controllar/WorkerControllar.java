@@ -25,11 +25,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.support.StringMultipartFileEditor;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.serviceProvider.Entities.AddWorkerStatus;
+import com.serviceProvider.Entities.User;
 import com.serviceProvider.Entities.WorkDataDescription;
 import com.serviceProvider.Entities.Worker;
 import com.serviceProvider.Helper.Entities.UserLogIn;
@@ -38,6 +39,7 @@ import com.serviceProvider.Helper.Entities.WorkerResponseToUser;
 import com.serviceProvider.Helper.Entities.updatingWorkerStatusHelper;
 import com.serviceProvider.Services.EmailService;
 import com.serviceProvider.Services.NotificationService;
+import com.serviceProvider.Services.UserService;
 import com.serviceProvider.Services.WorkerService;
 import com.serviceProvider.helperMethods.HelperMethods;
 
@@ -53,6 +55,10 @@ public class WorkerControllar {
 	@Autowired
 	private EmailService emailService;
 
+	@Autowired
+	private UserService userService;
+
+	
 	@Autowired
 	private NotificationService notificationService;
 	
@@ -80,7 +86,7 @@ public class WorkerControllar {
 	// upload worker data to
 
 	@RequestMapping("/workerSignUP")
-	public String workerSignUP(@RequestParam("profilePic") CommonsMultipartFile profilePic, @RequestParam("aadharCardPic") CommonsMultipartFile AadharPic, @ModelAttribute("Worker") @Valid Worker worker, BindingResult res, RedirectAttributes redirectAttributes, HttpSession session, Model m) {
+	public String workerSignUP(@RequestParam("pic") MultipartFile profilePic, @RequestParam("aadhar") MultipartFile AadharPic, @ModelAttribute("Worker") @Valid Worker worker, BindingResult res, RedirectAttributes redirectAttributes, HttpSession session, Model m) {
 
 		if (res.hasErrors()) {
 
@@ -96,7 +102,8 @@ public class WorkerControllar {
 
 			Worker emailAlreadyInDb = WorkerService.isEmailAlreadyInDb(worker.getEmail());
 			
-			if (emailAlreadyInDb !=null) {
+			User emailAlreadyInDb2 = userService.isEmailAlreadyInDb(worker.getEmail());
+			if (emailAlreadyInDb !=null || emailAlreadyInDb2 != null) {
 				m.addAttribute("msg", "email is already taken");
 				return "WorkerSignUP";
 			}
@@ -411,28 +418,36 @@ public class WorkerControllar {
 
 	@RequestMapping("/Worker/updatePic")
 	@ResponseBody
-	public String updateProfilePic(@RequestParam("profilePic") CommonsMultipartFile profilePic, HttpSession session) {
+	public String updateProfilePic(@RequestParam("profilePic") MultipartFile profilePic, HttpSession session) {
 		Worker worker = (Worker) session.getAttribute("Worker");
 		String oldFile = worker.getProfilePic();
 
 		String newFile = profilePic.getOriginalFilename();
 
-		byte[] bytes = profilePic.getBytes();
+		try {
+			byte[] bytes = profilePic.getBytes();
+			
 
-		String oldPath = session.getServletContext().getRealPath("/") + "WEB-INF" + File.separator + "component" + File.separator + "image" + File.separator + "profilePics" + File.separator + oldFile;
+			String oldPath = session.getServletContext().getRealPath("/") + "WEB-INF" + File.separator + "component" + File.separator + "image" + File.separator + "profilePics" + File.separator + oldFile;
 
-		String newPath = session.getServletContext().getRealPath("/") + "WEB-INF" + File.separator + "component" + File.separator + "image" + File.separator + "profilePics" + File.separator + newFile;
+			String newPath = session.getServletContext().getRealPath("/") + "WEB-INF" + File.separator + "component" + File.separator + "image" + File.separator + "profilePics" + File.separator + newFile;
 
-		worker.setProfilePic(newFile);
+			worker.setProfilePic(newFile);
 
-		boolean p1 = helperMethods.updateWorkerPic(newPath, oldPath, bytes);
-		 Worker updateWorker = WorkerService.updateWorker(worker);
+			boolean p1 = helperMethods.updateWorkerPic(newPath, oldPath, bytes);
+			 Worker updateWorker = WorkerService.updateWorker(worker);
 
-		if (p1 == true && updateWorker != null) {
-			return "done";
-		} else {
-			return "error";
+			if (p1 == true && updateWorker != null) {
+				return "done";
+			} else {
+				return "error";
+			}
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
 		}
+		return "error";
 
 	}
 

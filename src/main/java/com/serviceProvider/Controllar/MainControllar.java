@@ -3,7 +3,6 @@ package com.serviceProvider.Controllar;
 import java.security.Principal;
 import java.util.List;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -14,9 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,21 +21,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.support.StringMultipartFileEditor;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.serviceProvider.Entities.Contact;
 import com.serviceProvider.Entities.User;
 import com.serviceProvider.Entities.WorkDataDescription;
+import com.serviceProvider.Entities.Worker;
 import com.serviceProvider.Helper.Entities.UserLogIn;
 import com.serviceProvider.Services.EmailService;
 import com.serviceProvider.Services.UserService;
+import com.serviceProvider.Services.WorkerService;
 
 @Controller
 public class MainControllar {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private WorkerService workerService;
 
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
@@ -84,7 +85,10 @@ public class MainControllar {
 		} else {
 
 			User emailAlreadyInDb = userService.isEmailAlreadyInDb(user.getEmail());
-			if (emailAlreadyInDb != null) {
+			
+			Worker emailAlreadyInDb2 = workerService.isEmailAlreadyInDb(user.getEmail());
+			
+			if (emailAlreadyInDb != null || emailAlreadyInDb2 != null) {
 				m.addAttribute("emailExistMsg", "email is already taken");
 				return "Register";
 			}
@@ -291,14 +295,4 @@ public class MainControllar {
 		
 		
 
-	// binder for converting image multipart type to byte array
-	@InitBinder
-	protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws ServletException {
-
-		// Convert multipart object to byte[]
-		// binder.registerCustomEditor(byte[].class, new
-		// ByteArrayMultipartFileEditor());
-		binder.registerCustomEditor(String.class, new StringMultipartFileEditor());
-
-	}
 }
