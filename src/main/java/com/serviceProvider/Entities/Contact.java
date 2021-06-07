@@ -11,7 +11,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "contact")
+@Table(name = "contact",schema = "contact_schema")
 public class Contact {
 
 	@Id

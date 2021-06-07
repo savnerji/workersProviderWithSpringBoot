@@ -17,10 +17,10 @@ public interface AddWorkerStatusRepo extends CrudRepository<AddWorkerStatus, Int
 	
 	public AddWorkerStatus findByWorker(Worker worker);
 	
-	@Query("FROM Worker_status w INNER JOIN FETCH w.worker WHERE w.worker.work_Type=:service")
+	@Query("FROM worker_status w INNER JOIN FETCH w.worker WHERE w.worker.work_Type=:service")
 	public List<AddWorkerStatus> getAvailableWorker(@Param("service") String service);
 	
-	@Query("FROM Worker_status w  INNER JOIN FETCH w.worker WHERE w.status=:status AND w.worker.city=:city And w.worker.work_Type=:service")
+	@Query("FROM worker_status w  INNER JOIN FETCH w.worker WHERE w.status=:status AND w.worker.city=:city And w.worker.work_Type=:service")
 	public List<AddWorkerStatus> getWorkersByCity(@Param("status") String status ,@Param("city") String city,@Param("service") String service);
 
 

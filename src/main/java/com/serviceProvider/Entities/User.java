@@ -11,7 +11,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "user")
+@Table(name = "user",schema = "user_details")
 public class User {
 
 	@Id
@@ -41,7 +41,7 @@ public class User {
 	@NotBlank(message = "* User city cannot be blank")
 	private String city;
 
-	@Column(name = "Role")
+	@Column(name = "role")
 	private String role;
 
 	public User() {

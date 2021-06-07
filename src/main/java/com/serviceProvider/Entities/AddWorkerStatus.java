@@ -6,8 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-@Entity(name = "Worker_status")
+@Entity(name = "worker_status")
+@Table(schema = "workerstatus_schema")
 public class AddWorkerStatus {
 
 	@Id
