@@ -76,8 +76,8 @@
 										</div>
 										<div class="group">
 											<label for="pass" class="label">Email:</label>
-											<form:input path="Email" id="usrEmail" type="email" cssClass="input" data-type="email" placeholder="Create your Email" />
-											<form:errors path="Email" cssClass="error"></form:errors>
+											<form:input path="email" id="usrEmail" type="email" cssClass="input" data-type="email" placeholder="Create your Email" />
+											<form:errors path="email" cssClass="error"></form:errors>
 											<span class="error_form " id="eml_error_message" style="margin-top: 2px"></span>
 										</div>
 										<div class="group">

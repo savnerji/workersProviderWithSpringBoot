@@ -85,7 +85,7 @@ public class WorkerControllar {
 
 	// upload worker data to
 
-	@RequestMapping("/workerSignUP")
+	@PostMapping("/workerSignUP")
 	public String workerSignUP(@RequestParam("pic") MultipartFile profilePic, @RequestParam("aadhar") MultipartFile AadharPic, @ModelAttribute("Worker") @Valid Worker worker, BindingResult res, RedirectAttributes redirectAttributes, HttpSession session, Model m) {
 
 		if (res.hasErrors()) {

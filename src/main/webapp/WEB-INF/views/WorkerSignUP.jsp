@@ -47,7 +47,7 @@
 	</div>
 	
 	
-		<form:form action="workerSignUP" modelAttribute="Worker" cssClass="workerForm" enctype="multipart/form-data">
+		<form:form action="workerSignUP" modelAttribute="Worker" cssClass="workerForm" enctype="multipart/form-data" method="POST">
 			<div class="form-group">
 				<label class="workerLabel" for="exampleFormControlInput1">Worker Name :</label>
 				<form:input path="w_Name" cssClass="form-control inpt" id="frmName" placeholder="Enter your name" cssStyle="color:#07a64c" />
