@@ -11,7 +11,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "user_details" ,schema = "services") 
+@Table(name = "user_details") 
 public class User{
 
 	@Id
