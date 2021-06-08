@@ -14,7 +14,7 @@ import javax.validation.constraints.NotBlank;
 public class WorkDataDescription {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int workData_Id;
 
 	@Column(name = "custome_Name")

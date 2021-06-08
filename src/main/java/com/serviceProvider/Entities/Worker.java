@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 public class Worker {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "W_ID")
 	private int w_Id;
 

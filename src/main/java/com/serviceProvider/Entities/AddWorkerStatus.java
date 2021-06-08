@@ -11,7 +11,7 @@ import javax.persistence.OneToOne;
 public class AddWorkerStatus {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "status_id")
 	private int status_id;
 	

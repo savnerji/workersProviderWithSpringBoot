@@ -15,7 +15,7 @@ import javax.validation.constraints.Size;
 public class User{
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "u_id",nullable = false)
 	private int uid;
 
