@@ -8,8 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "worker_status") 
+@Entity(name = "worker_status")
+@Table(schema = "service")
 public class AddWorkerStatus {
 
 	@Id
