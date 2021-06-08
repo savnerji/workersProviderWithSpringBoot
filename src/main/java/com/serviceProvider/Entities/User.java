@@ -12,11 +12,11 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "user")
-public class User {
+public class User{
 
 	@Id
-	@Column(name = "u_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "u_id")
 	private int uid;
 
 	@Column(name = "u_name")
@@ -49,10 +49,12 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
-	
-
-	public User(int uid, @NotBlank(message = "* User Name cannot be blank") @Size(min = 3, max = 30, message = "* length Must greater then 3") String name, @NotBlank(message = "* User email cannot be blank") @javax.validation.constraints.Email(message = "Your email is incorrect") String email,
-			@NotBlank(message = "* User contact  cannot be blank") String contact, @NotBlank(message = "* User password cannot be blank") String password, @NotBlank(message = "* User city cannot be blank") String city, String role) {
+	public User(int uid,
+			@NotBlank(message = "* User Name cannot be blank") @Size(min = 3, max = 30, message = "* length Must greater then 3") String name,
+			@NotBlank(message = "* User email cannot be blank") @Email(message = "Your email is incorrect") String email,
+			@NotBlank(message = "* User contact  cannot be blank") String contact,
+			@NotBlank(message = "* User password cannot be blank") String password,
+			@NotBlank(message = "* User city cannot be blank") String city, String role) {
 		super();
 		this.uid = uid;
 		Name = name;
@@ -63,15 +65,7 @@ public class User {
 		this.role = role;
 	}
 
-
-
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
+	
 
 	public int getUid() {
 		return uid;
@@ -113,19 +107,21 @@ public class User {
 		Password = password;
 	}
 
-	
-	
 	public String getCity() {
 		return city;
 	}
-
-
 
 	public void setCity(String city) {
 		this.city = city;
 	}
 
+	public String getRole() {
+		return role;
+	}
 
+	public void setRole(String role) {
+		this.role = role;
+	}
 
 	public User(String email, String password) {
 		super();
@@ -133,12 +129,11 @@ public class User {
 		Password = password;
 	}
 
-
-
 	@Override
 	public String toString() {
-		return "User [uid=" + uid + ", Name=" + Name + ", Email=" + email + ", Contact=" + Contact + ", Password=" + Password + ", city=" + city + ", role=" + role + "]";
+		return "User [uid=" + uid + ", Name=" + Name + ", email=" + email + ", Contact=" + Contact + ", Password="
+				+ Password + ", city=" + city + ", role=" + role + "]";
 	}
 
-
+	
 }
