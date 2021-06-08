@@ -1,22 +1,14 @@
 package com.serviceProvider.Services;
 
-import java.util.Properties;
 import java.util.Random;
 
-import javax.mail.Authenticator;
-import javax.mail.Message;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-import com.serviceProvider.DAO.UserReposiritery;
 import com.serviceProvider.Entities.Worker;
 
 @Service
@@ -25,79 +17,96 @@ public class EmailService {
 
 	@Autowired
 	private EmailService emailService;
-	
-	@Autowired
-	private UserReposiritery helperDao;
 
 	@Autowired
-	private BCryptPasswordEncoder passwordEncoder;
+	private JavaMailSender emailSender;
 
 	// method for sending email
 	public boolean sendEmail(String subject, String message, String to) {
 
 		boolean f = false;
-		String from = "vaibhavsavner05@gmail.com";
-		String host = "smtp.gmail.com";
 
-		// get rhwe systrem property
-
-		Properties properties = System.getProperties();
-		System.out.println("prop" + " " + properties);
-
-		// setting the important information to properties object
-
-		// host set
-
-		properties.put("mail.smtp.host", host);
-		properties.put("mail.transport.protocol", "smtp");
-		properties.put("mail.smtp.port", 465);
-		properties.put("mail.smtp.ssl.enable", "true");
-		properties.put("mail.smtp.auth", "true");
-		properties.put("mail.smtp.starttls.enable", "true");
-
-		// step -1 get the session object
-
-		Session session = Session.getInstance(properties, new Authenticator() {
-			@Override
-			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("vaibhavsavner05@gmail.com", "Vaibhav@2000");
-			}
-		});
-
-		System.out.println(session);
-
-		session.setDebug(true);
-
-		// step -2 compose message[text,multimedia]
-		MimeMessage mimeMessage = new MimeMessage(session);
-		System.out.println("before try block");
 		try {
-			// from email id
 
-			mimeMessage.setFrom(from);
+			SimpleMailMessage msg = new SimpleMailMessage();
+			msg.setFrom("vaibhavsavner05@gmail.com");
+			msg.setTo(to);
+			msg.setSubject(subject);
+			msg.setText(message);
+			emailSender.send(msg);
+			f= true;
 
-			// adding recipient to message
-			mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-
-			// adding subject to msg
-			mimeMessage.setSubject(subject);
-
-			// adding text message
-			// mimeMessage.setText(message);
-
-			mimeMessage.setContent(message, "text/html");
-
-			// step -3 send the msg using transport class
-
-			Transport.send(mimeMessage);
-			System.out.println("send successfuly");
-			f = true;
-
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+	
 		return f;
+		
+//		boolean f = false;
+//		String from = "vaibhavsavner05@gmail.com";
+//		String host = "smtp.gmail.com";
+//
+//		// get rhwe systrem property
+//
+//		Properties properties = System.getProperties();
+//		System.out.println("prop" + " " + properties);
+//
+//		// setting the important information to properties object
+//
+//		// host set
+//
+//		properties.put("mail.smtp.host", host);
+//		properties.put("mail.transport.protocol", "smtp");
+//		properties.put("mail.smtp.port", 465);
+//		properties.put("mail.smtp.ssl.enable", "true");
+//		properties.put("mail.smtp.auth", "true");
+//		properties.put("mail.smtp.starttls.enable", "true");
+//		properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+//
+//		// step -1 get the session object
+//
+//		Session session = Session.getInstance(properties, new Authenticator() {
+//			@Override
+//			protected PasswordAuthentication getPasswordAuthentication() {
+//				return new PasswordAuthentication("vaibhavsavner05@gmail.com", "Vaibhav@2000");
+//			}
+//		});
+//
+//		System.out.println(session);
+//
+//		session.setDebug(true);
+//
+//		// step -2 compose message[text,multimedia]
+//		MimeMessage mimeMessage = new MimeMessage(session);
+//		System.out.println("before try block");
+//		try {
+//			// from email id
+//
+//			mimeMessage.setFrom(from);
+//
+//			// adding recipient to message
+//			mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+//
+//			// adding subject to msg
+//			mimeMessage.setSubject(subject);
+//
+//			// adding text message
+//			// mimeMessage.setText(message);
+//
+//			mimeMessage.setContent(message, "text/html");
+//
+//			// step -3 send the msg using transport class
+//
+//			Transport.send(mimeMessage);
+//			System.out.println("send successfuly");
+//			f = true;
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+
+	
 	}
 
 	// send otp for worker registeration varification

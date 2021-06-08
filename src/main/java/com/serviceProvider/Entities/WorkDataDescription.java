@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "workdatadescription",schema = "service")
+@Table(name = "workdatadescription",schema = "services")
 public class WorkDataDescription {
 
 	@Id
