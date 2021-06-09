@@ -24,7 +24,7 @@ public class WebMvcConfigurer implements org.springframework.web.servlet.config.
 	    mailSender.setHost("smtp.gmail.com");
 	    mailSender.setPort(587);
 	    
-	    mailSender.setUsername("vaibhavsavner05@gmail.com");
+	    mailSender.setUsername("savnerji05@gmail.com");
 	    mailSender.setPassword("Vaibhav@2000");
 	    
 	    Properties props = mailSender.getJavaMailProperties();
